@@ -1,0 +1,29 @@
+Prochaine étape :
+-faire en sorte qu'on puisse entrer des fractions en paramètres
+-
+
+(Fraction longueur < 8) > ecriture la plus courte
+
+
+
+
+
+Si y'a 16 digits après la virgule, on considère que c'est un rationnel non-décimal.
+Si le string finit par '..' c'est un rationnel non-décimal.
+
+
+Le plus petit motif qui se répéte en partant du début du dev decimal et en 
+ignorant le tout dernier digit (car arrondi possible)
+
+
+Quel est le plus petit motif qui se répète jusqu'à la fin (sans compter dernier digit).
+
+ex : 
+0.6666666666666667  =>  plus petite période = 6
+0.1428571428571429  => plus petite période = 142857
+
+1 / 3 = (1/3)
+      = 0.3..
+
+(1/7) x 1 = 0.142857..
+          = (1/7)
