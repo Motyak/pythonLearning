@@ -41,34 +41,51 @@ def period(rational):
     return ('', '')
         
 
-print(period(1/70))
+# print(period(1/130))
 # print(isRepeating('142857', '1428571428571428'))    #True
 # print(isRepeating('14285', '1428571428571428'))     #False
 
 
-# def fm(number):
-#     number = float(number)  #check if its a number
+def fm(number):
+    number = float(number)  #check if its a number
 
-#     #if its a whole number, get rid of the decimal part
-#     if number.is_integer():
-#         return str(int(number))
+    #if its a whole number, get rid of the decimal part
+    if number.is_integer():
+        return str(int(number))
 
-#     #construct the fraction
-#     ent = dec = str(number)
-#     ent = ent[:ent.find('.')]
-#     dec = dec[dec.find('.') + 1:]
-#     a = int(dec) + int(ent) * 10 * len(dec)
-#     b = int('1' + len(dec) * '0')
+    #get integral and decimal part
+    ent = dec = str(number)
+    ent = ent[:ent.find('.')]
+    dec = dec[dec.find('.') + 1:]
 
-#     #simplification de la fraction
-#     gcd = pgcd(a, b)
-#     a, b = int(a / gcd), int(b / gcd)
+    # we consider its a non-decimal if it has at least 10 digits
+    if(len(str(number)) >= 10):
+        decParts = period(number)  #0 -> fixed, 1 -> periodic part
+        print(decParts) #debug
+        a = int(decParts[1])
+        b = int(len(decParts[1]) * '9') * 10 ** len(decParts[0])
+        if decParts[0] != '':
+            a += int(decParts[0]) * int(len(decParts[1]) * '9')
 
-#     frac = '(' + str(a) + '/' + str(b) + ')'
-#     if len(frac) < 8 or len(frac) < len(str(number)):
-#         return frac
+        a += int(ent) * b   #la partie entiere
+
+    # else if its a decimal..
+    else:
+        a = int(dec) + int(ent) * 10 * len(dec)
+        b = int('1' + len(dec) * '0') 
+
+    # fraction simplification
+    gcd = pgcd(a, b)
+    a, b = int(a / gcd), int(b / gcd)
+
+    # evaluate if its better to return the fraction or the raw number
+    frac = '(' + str(a) + '/' + str(b) + ')'
+    # if len(frac) < 8 or len(frac) < len(str(number)):
+    return frac
     
-#     return str(number)
+    return str(number)
+
+print(fm(0.0419971997199))
 
 # def genSpaces(string):
 #     string = str(string)
