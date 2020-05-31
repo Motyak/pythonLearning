@@ -2,6 +2,20 @@ Prochaine étape :
 -faire en sorte qu'on puisse entrer des fractions en paramètres
 -
 
+
+
+
+Mettre un param a fm, booleen 'exactValue', si c'est False ca retourne
+la valeur approchée en décimale au lieu de la fraction (si dispo)
+
+Ecriture fraction uniquement si longueur < 8.
+Ecriture decimale simplifiée si plus courte que nombre lui meme.
+
+
+
+
+
+
 (Fraction longueur < 8) > ecriture la plus courte
 
 
