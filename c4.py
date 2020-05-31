@@ -53,7 +53,6 @@ def fm(number, exactValue=True):
     ent = dec = str(number)
     ent = ent[:ent.find('.')]
     dec = dec[dec.find('.') + 1:]
-    
 
     # we consider its a non-decimal if it has at least 10 digits
     if(len(str(dec)) >= 10):
@@ -127,14 +126,8 @@ while userInput not in ['a', 's', 'm', 'd']:
 
 first = input('Enter a first operand : ')
 second = input('Enter a second operand : ')
-if(isFraction(first)):
-    first = getValue(first)
-else:
-    first = float(first)
-if(isFraction(second)):
-    second = getValue(second)
-else:
-    second = float(second)
+first = getValue(first) if isFraction(first) else float(first)
+second = getValue(second) if isFraction(second) else float(second)
 
 if userInput == 'a':
     op = fm(first) + ' + ' + fm(second)
