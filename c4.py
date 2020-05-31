@@ -8,12 +8,14 @@ def pgcd(a, b):
         a, b = b, r
     return int(a)
 
+# check if a pattern is periodic within a string (startswith instead of equality)
 def isRepeating(pattern, string):
     nbOfIterations = math.ceil(len(string) / len(pattern))
-    print(nbOfIterations)   #debug
+    if nbOfIterations == 1:
+        return False
     for i in range(1, nbOfIterations + 1):
         substring = string[len(pattern) * (i - 1):len(pattern) * i]
-        print(string, pattern, substring)   #debug
+        # print(string, pattern, substring)   #debug
         if substring <= pattern:
             if pattern.startswith(substring) == False:
                 return False
@@ -21,6 +23,7 @@ def isRepeating(pattern, string):
             return False
     return True
 
+# return a tuple with the fixed decimal part and the periodic decimal part
 def period(rational):
     rational = float(rational)  #check if its a number
 
@@ -33,12 +36,12 @@ def period(rational):
         for j in range(i, len(dec) - 1):
             actualPattern += str(dec[j])
             # check if pattern is repeating until the end excluding last digit
-            if isRepeating(actualPattern, dec[:-1]):
-                return actualPattern
-            # print(actualPattern)
+            if isRepeating(actualPattern, dec[i:-1]):
+                return (dec[:dec.find(actualPattern)], actualPattern)
+    return ('', '')
         
 
-print(period(1/13))
+print(period(1/70))
 # print(isRepeating('142857', '1428571428571428'))    #True
 # print(isRepeating('14285', '1428571428571428'))     #False
 
