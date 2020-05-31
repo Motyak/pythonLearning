@@ -1,5 +1,5 @@
-import math
-import re
+import math #ceil for nb of iterations in isRepeating(..)
+import re   #fractions in input
 
 def pgcd(a, b):
     a, b = int(a), int(b)   #check if a and b are integers
@@ -39,7 +39,7 @@ def period(rational):
             # check if pattern is repeating until the end excluding last digit
             if isRepeating(actualPattern, dec[i:-1]):
                 return (dec[:dec.find(actualPattern)], actualPattern)
-    return ('', '')
+    return (dec, '0')
 
 # Format a number to print it the correct way
 def fm(number, exactValue=True):
@@ -56,7 +56,7 @@ def fm(number, exactValue=True):
     
 
     # we consider its a non-decimal if it has at least 10 digits
-    if(len(str(number)) >= 10):
+    if(len(str(dec)) >= 10):
         decParts = period(number)  #0 -> fixed, 1 -> periodic part
 
         if not exactValue:
@@ -125,8 +125,6 @@ userInput=''
 while userInput not in ['a', 's', 'm', 'd']:
     userInput = input(inputText)[0]
 
-# first = float(input('Enter a first operand : '))
-# second = float(input('Enter a second operand : '))
 first = input('Enter a first operand : ')
 second = input('Enter a second operand : ')
 if(isFraction(first)):
