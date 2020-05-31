@@ -1,7 +1,12 @@
+
+
+
+
+
+
+
 Prochaine étape :
 -faire en sorte qu'on puisse entrer des fractions en paramètres
--
-
 
 
 

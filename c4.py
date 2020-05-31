@@ -1,4 +1,5 @@
 import math
+import re
 
 def pgcd(a, b):
     a, b = int(a), int(b)   #check if a and b are integers
@@ -39,13 +40,8 @@ def period(rational):
             if isRepeating(actualPattern, dec[i:-1]):
                 return (dec[:dec.find(actualPattern)], actualPattern)
     return ('', '')
-        
 
-# print(period(1/130))
-# print(isRepeating('142857', '1428571428571428'))    #True
-# print(isRepeating('14285', '1428571428571428'))     #False
-
-
+# Format a number to print it the correct way
 def fm(number, exactValue=True):
     number = float(number)  #check if its a number
 
@@ -57,11 +53,11 @@ def fm(number, exactValue=True):
     ent = dec = str(number)
     ent = ent[:ent.find('.')]
     dec = dec[dec.find('.') + 1:]
+    
 
     # we consider its a non-decimal if it has at least 10 digits
     if(len(str(number)) >= 10):
         decParts = period(number)  #0 -> fixed, 1 -> periodic part
-        # print(decParts) #debug
 
         if not exactValue:
             return ent + '.' + decParts[0] + '[' + decParts[1] + ']..'
@@ -71,8 +67,6 @@ def fm(number, exactValue=True):
         if decParts[0] != '':
             a += int(decParts[0]) * int(len(decParts[1]) * '9')
         a += int(ent) * b   #la partie entiere
-
-        
 
     # else if its a decimal..
     else:
@@ -93,8 +87,6 @@ def fm(number, exactValue=True):
     
     return str(number)
 
-# print(fm(0.0419971997199))
-
 def genSpaces(string):
     string = str(string)
 
@@ -103,6 +95,21 @@ def genSpaces(string):
     
     return len(string) * ' '
 
+def isFraction(string):
+    string = str(string)
+    if re.match(r'^\d+/\d+$', string):
+        return True
+    return False
+
+def getValue(fraction):
+    fraction = str(fraction)
+    search = re.search(r'^(\d+)/(\d+)$', fraction)
+    if search:
+        a = int(search.group(1))
+        b = int(search.group(2))
+        return a/b
+    
+# print(fm(0.0419971997199))
 
 inputText = \
 '''
@@ -118,8 +125,18 @@ userInput=''
 while userInput not in ['a', 's', 'm', 'd']:
     userInput = input(inputText)[0]
 
-first = float(input('Enter a first operand : '))
-second = float(input('Enter a second operand : '))
+# first = float(input('Enter a first operand : '))
+# second = float(input('Enter a second operand : '))
+first = input('Enter a first operand : ')
+second = input('Enter a second operand : ')
+if(isFraction(first)):
+    first = getValue(first)
+else:
+    first = float(first)
+if(isFraction(second)):
+    second = getValue(second)
+else:
+    second = float(second)
 
 if userInput == 'a':
     op = fm(first) + ' + ' + fm(second)
