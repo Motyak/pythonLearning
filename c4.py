@@ -65,15 +65,19 @@ def fm(number, decimalForm=False):
         b = int(len(decParts[1]) * '9') * 10 ** len(decParts[0])
         if decParts[0] != '':
             a += int(decParts[0]) * int(len(decParts[1]) * '9')
-        a += int(ent) * b   #la partie entiere
+        a += abs(int(ent)) * b   #la partie entiere
+        if str(number)[0] == '-':
+            a = -a
 
     # else if its a decimal..
     else:
         if decimalForm:
             return ent + '.' + dec
 
-        a = int(dec) + int(ent) * 10 ** len(dec)
-        b = int('1' + len(dec) * '0') 
+        a = int(dec) + abs(int(ent)) * 10 ** len(dec)
+        b = int('1' + len(dec) * '0')
+        if str(number)[0] == '-':
+            a = -a
 
     # fraction simplification
     gcd = pgcd(a, b)
@@ -83,6 +87,7 @@ def fm(number, decimalForm=False):
     frac = '(' + str(a) + '/' + str(b) + ')'
     if len(frac) < 8 or len(frac) < len(str(number)):
         return frac
+    # return frac #debug
     
     return str(number)
 
