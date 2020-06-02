@@ -42,7 +42,7 @@ def period(rational):
     return (dec, '0')
 
 # Format a number to print it the correct way
-def fm(number, exactValue=True):
+def fm(number, decimalForm=False):
     number = float(number)  #check if its a number
 
     #if its a whole number, get rid of the decimal part
@@ -58,7 +58,7 @@ def fm(number, exactValue=True):
     if(len(str(dec)) >= 10):
         decParts = period(number)  #0 -> fixed, 1 -> periodic part
 
-        if not exactValue:
+        if decimalForm:
             return ent + '.' + decParts[0] + '[' + decParts[1] + ']..'
 
         a = int(decParts[1])
@@ -69,10 +69,10 @@ def fm(number, exactValue=True):
 
     # else if its a decimal..
     else:
-        if not exactValue:
+        if decimalForm:
             return ent + '.' + dec
 
-        a = int(dec) + int(ent) * 10 * len(dec)
+        a = int(dec) + int(ent) * 10 ** len(dec)
         b = int('1' + len(dec) * '0') 
 
     # fraction simplification
@@ -147,4 +147,4 @@ elif userInput == 'd':
 
 print(op, '=', fm(res))
 if(not res.is_integer() and fm(res) != str(res)):
-    print(genSpaces(op), '=', fm(res, False))
+    print(genSpaces(op), '=', fm(res, True))
