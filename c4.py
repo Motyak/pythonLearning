@@ -16,7 +16,6 @@ def isRepeating(pattern, string):
         return False
     for i in range(1, nbOfIterations + 1):
         substring = string[len(pattern) * (i - 1):len(pattern) * i]
-        # print(string, pattern, substring)   #debug
         if substring <= pattern:
             if pattern.startswith(substring) == False:
                 return False
@@ -55,24 +54,23 @@ def fm(number, decimalForm=False):
     dec = dec[dec.find('.') + 1:]
 
     # we consider its a non-decimal if it has at least 10 digits
-    if(len(str(dec)) >= 10):
+    if(len(dec) >= 10):
         decParts = period(number)  #0 -> fixed, 1 -> periodic part
 
         if decimalForm:
             return ent + '.' + decParts[0] + '[' + decParts[1] + ']..'
 
-        a = int(decParts[1])
         b = int(len(decParts[1]) * '9') * 10 ** len(decParts[0])
+        a = int(decParts[1]) + abs(int(ent)) * b
         if decParts[0] != '':
             a += int(decParts[0]) * int(len(decParts[1]) * '9')
-        a += abs(int(ent)) * b   #la partie entiere
         if str(number)[0] == '-':
             a = -a
 
     # else if its a decimal..
     else:
         if decimalForm:
-            return ent + '.' + dec
+            return str(number)
 
         a = int(dec) + abs(int(ent)) * 10 ** len(dec)
         b = int('1' + len(dec) * '0')
@@ -83,11 +81,10 @@ def fm(number, decimalForm=False):
     gcd = pgcd(a, b)
     a, b = int(a / gcd), int(b / gcd)
 
-    # evaluate if its better to return the fraction or the raw number
+    # evaluate if its shorter to return the fraction or the raw number
     frac = '(' + str(a) + '/' + str(b) + ')'
     if len(frac) < 8 or len(frac) < len(str(number)):
         return frac
-    # return frac #debug
     
     return str(number)
 

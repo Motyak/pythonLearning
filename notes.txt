@@ -5,4 +5,3 @@
 
 PB : 
 
-quand on met 3 x -3/4 => could not convert to float '-4/3'
