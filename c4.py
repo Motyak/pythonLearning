@@ -101,13 +101,13 @@ def genSpaces(string):
 
 def isFraction(string):
     string = str(string)
-    if re.match(r'^\d+/\d+$', string):
+    if re.match(r'^-?\d+/\d+$', string):
         return True
     return False
 
 def getValue(fraction):
     fraction = str(fraction)
-    search = re.search(r'^(\d+)/(\d+)$', fraction)
+    search = re.search(r'^(-?\d+)/(\d+)$', fraction)
     if search:
         a = int(search.group(1))
         b = int(search.group(2))
