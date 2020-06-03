@@ -116,12 +116,10 @@ def askForOperand(inputMsg):
     except ValueError:
         return askForOperand(inputMsg)
 
-map = {
-    'a':('+', lambda a, b: a + b), 
-    's':('-', lambda a, b: a - b), 
-    'm':('*', lambda a, b: a * b), 
-    'd':('/', lambda a, b: a / b)
-}
+map = { 'a':('+', lambda a, b: a + b), 
+        's':('-', lambda a, b: a - b), 
+        'm':('*', lambda a, b: a * b), 
+        'd':('/', lambda a, b: a / b)   }
 
 inputText = \
 '''
