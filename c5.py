@@ -55,15 +55,15 @@ def fm(number, decimalForm=False):
 
     # we consider its a non-decimal if it has at least 10 digits
     if(len(dec) >= 10):
-        decParts = period(number)  #0 -> fixed, 1 -> periodic part
+        fixedDecPart, periodicDecPart = period(number)  
 
         if decimalForm:
-            return '{0}.{1}[{2}]..'.format(ent, decParts[0], decParts[1])
+            return '{0}.{1}[{2}]..'.format(ent, fixedDecPart, periodicDecPart)
 
-        b = int(len(decParts[1]) * '9') * 10 ** len(decParts[0])
-        a = int(decParts[1]) + abs(int(ent)) * b
-        if decParts[0] != '':
-            a += int(decParts[0]) * int(len(decParts[1]) * '9')
+        b = int(len(periodicDecPart) * '9') * 10 ** len(fixedDecPart)
+        a = int(periodicDecPart) + abs(int(ent)) * b
+        if fixedDecPart != '':
+            a += int(fixedDecPart) * int(len(periodicDecPart) * '9')
         if str(number)[0] == '-':
             a = -a
 
