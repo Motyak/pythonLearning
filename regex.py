@@ -10,7 +10,7 @@ class Acronym:
     @staticmethod
     def parseAcronyms(text):
         acronym = r'(?P<acronym>[A-Z](?:\.?[A-Z])(?:\.?[A-Z]){0,5}){1}'
-        meaning = r'(?P<meaning>(?:[A-Z]{1}[a-z]+){1}(?:\ [A-Z]?[a-z]+)+)'
+        meaning = r'(?P<meaning>(?:[A-Z]{1}[a-z]+){1}(?:\ (?:(?:and|of)\ )?[A-Z]{1}[a-z]+)+)'
         pattern = r'{}\ ?\({}\)'.format(acronym, meaning)
         matches =  re.findall(pattern, text)
 
@@ -19,7 +19,7 @@ class Acronym:
 
     @staticmethod
     def _checkIfValid(acronym):
-        return all(acronym.word[i] == Acronym._getMeaning(acronym, i) 
+        return all(acronym.word[i] == Acronym._getMeaning(acronym, i)[0] 
                 for i in range(0, len(acronym.word)))
 
     @staticmethod
@@ -32,7 +32,8 @@ class Acronym:
     
 text = 'Le protocole WWW (Panier Wide Web) est superbe, \
 mais je préfère la N.B.A(National Basketball Association).\
-Vive la NASA (National Aeronautics and Space Administration).'
+Vive la NASA (National Aeronautics and Space Administration).\
+Je travaille pour le FBI (Federal Bureau of Investigation).'
 
 acronyms = Acronym.parseAcronyms(text)
 
