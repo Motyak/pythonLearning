@@ -1,6 +1,6 @@
 import re
 
-#Parse and print all valid acronyms from a text
+#Parse and print all distinct valid acronyms from a text
 
 class Acronym:
     def __init__(self, word, standsFor):
@@ -10,7 +10,7 @@ class Acronym:
     @staticmethod
     def parseAcronyms(text):
         acronym = r'(?P<acronym>[A-Z](?:\.?[A-Z])(?:\.?[A-Z]){0,5}){1}'
-        meaning = r'(?P<meaning>(?:[A-Z]{1}[a-z]+){1}(?:\ [A-Z]{1}[a-z]+)+)'
+        meaning = r'(?P<meaning>(?:[A-Z]{1}[a-z]+){1}(?:\ [A-Z]?[a-z]+)+)'
         pattern = r'{}\ ?\({}\)'.format(acronym, meaning)
         matches =  re.findall(pattern, text)
 
@@ -19,8 +19,12 @@ class Acronym:
 
     @staticmethod
     def _checkIfValid(acronym):
-        return all(acronym.word[i] == acronym.standsFor.split(' ')[i][0] 
+        return all(acronym.word[i] == Acronym._getMeaning(acronym, i) 
                 for i in range(0, len(acronym.word)))
+
+    @staticmethod
+    def _getMeaning(acronym, index):
+        return list(filter(lambda x: x[0].isupper(), acronym.standsFor))[index]
 
     def __str__(self):
         return '{}, meaning {}'.format(self.word, self.standsFor)
