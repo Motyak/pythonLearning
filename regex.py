@@ -9,9 +9,9 @@ class Acronym:
 
     @staticmethod
     def parseAcronyms(text):
-        acronym = r'(?P<acronym>[A-Z](?:\.?[A-Z])(?:\.?[A-Z]){0,5}){1}'
-        meaning = r'(?P<meaning>(?:[A-Z]{1}[a-z]+){1}(?:\ (?:(?:and|of)\ )?[A-Z]{1}[a-z]+)+)'
-        pattern = r'{}\ ?\({}\)'.format(acronym, meaning)
+        acronym = r'(?P<acronym>[A-Z](?:\.?[A-Z]){1,5})'
+        meaning = r'(?P<meaning>[A-Z][a-z]+(?:\ (?:(?:and|of)\ )?[A-Z][a-z]+)+)'
+        pattern = r'(?:^|\ ){}\ ?\({}\)'.format(acronym, meaning)
         matches =  re.findall(pattern, text)
 
         acronyms = {Acronym(match[0], match[1]) for match in matches}
