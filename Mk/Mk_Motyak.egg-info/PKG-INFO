@@ -1,0 +1,16 @@
+Metadata-Version: 2.1
+Name: Mk-Motyak
+Version: 0.0.1
+Summary: My package
+Home-page: https://github.com/Motyak/pythonLearning
+Author: Motyak
+Author-email: m0tyak_@live.fr
+License: UNKNOWN
+Description: example package
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown

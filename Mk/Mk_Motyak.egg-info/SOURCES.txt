@@ -1,0 +1,9 @@
+README.md
+setup.py
+Mk/__init__.py
+Mk/calculator.py
+Mk/regex.py
+Mk_Motyak.egg-info/PKG-INFO
+Mk_Motyak.egg-info/SOURCES.txt
+Mk_Motyak.egg-info/dependency_links.txt
+Mk_Motyak.egg-info/top_level.txt
