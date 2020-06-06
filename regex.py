@@ -36,14 +36,15 @@ class Acronym:
     def __hash__(self):
         return hash(self.__str__())
 
-    
-text = 'Le protocole WWW (Panier Wide Web) est superbe, \
+if __name__ == '__main__':
+    text = 'Le protocole WWW (Panier Wide Web) est superbe, \
 mais je préfère la N.B.A(National Basketball Association).\
 Vive la NASA (National Aeronautics and Space Administration).\
 Je travaille pour le FBI (Federal Bureau of Investigation).\
 Je travaille pour le FBI (Federal Bureau of Investigation).'
 
-acronyms = Acronym.parseAcronyms(text)
+    acronyms = Acronym.parseAcronyms(text)
 
-for acro in acronyms:
-    print(acro)
+    for acro in acronyms:
+        print(acro)
+
