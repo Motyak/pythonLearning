@@ -29,10 +29,18 @@ class Acronym:
     def __str__(self):
         return '{}, meaning {}'.format(self.word, self.standsFor)
 
+    def __eq__(self, other):
+        if isinstance(other, Acronym):
+            return self.word == other.word and self.standsFor == other.standsFor
+
+    def __hash__(self):
+        return hash(self.__str__())
+
     
 text = 'Le protocole WWW (Panier Wide Web) est superbe, \
 mais je préfère la N.B.A(National Basketball Association).\
 Vive la NASA (National Aeronautics and Space Administration).\
+Je travaille pour le FBI (Federal Bureau of Investigation).\
 Je travaille pour le FBI (Federal Bureau of Investigation).'
 
 acronyms = Acronym.parseAcronyms(text)
