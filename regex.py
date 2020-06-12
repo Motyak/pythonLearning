@@ -47,4 +47,3 @@ Je travaille pour le FBI (Federal Bureau of Investigation).'
 
     for acro in acronyms:
         print(acro)
-
