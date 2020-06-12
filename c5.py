@@ -14,9 +14,10 @@ def isRepeating(pattern, string):
     nbOfIterations = math.ceil(len(string) / len(pattern))
     if nbOfIterations == 1:
         return False
-    for i in range(nbOfIterations):
+    for i in range(1, nbOfIterations + 1):
         substring = string[len(pattern) * (i - 1):len(pattern) * i]
-        if substring <= pattern:
+        # if substring <= pattern:
+        if len(substring) <= len(pattern):
             if not pattern.startswith(substring):
                 return False
         elif not substring.startswith(pattern):
@@ -88,6 +89,8 @@ def fm(number, decimalForm=False):
     
     return str(number)
 
+# print(fm(0.040419971997, True))   # example
+
 def isfloat(val):
     try:
         float(val)
@@ -144,5 +147,7 @@ if __name__ == '__main__':
     res = map[userInput][1](first, second)
 
     print(op, '=', fm(res))
+    #changer la condition pour que ça s'affiche pour 0.040419971997
     if(not res.is_integer() and fm(res) != str(res)):
         print(len(op) * ' ', '=', fm(res, True))
+    # print(len(op) * ' ', '=', fm(res, True))

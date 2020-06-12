@@ -5,3 +5,9 @@
 
 PB : 
 
+Ne marche pas pour 0.040419971997
+    retourne ..
+        = (1497/37037)
+        = 0.[040419]..
+
+    au lieu de 0.0404[1997]
